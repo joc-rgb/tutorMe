@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String  @unique
+  email     String?  @unique
+  location String
+  profileImg     String?
+  phoneNumber String? 
+  about String?
+  expertiseIn String[]
+  highestEducationLvl String?
+  offers  Offer[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Offer {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  tag String[] 
+  pricePerSession  Float[]
+  tutorMode Mode[]
+  contact String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  postedById  Int
+  postedBy  User  @relation(fields: [postedById], references: [id])
+  
+}
+
+enum Mode {
+  ONLINE
+  IN_PERSON
+}
