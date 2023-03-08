@@ -14,3 +14,12 @@ builder.prismaObject('User', {
       offers: t.relation('offers')
     }),
   });
+
+  builder.queryField('users', (t)=>
+  t.prismaField({
+    type: ['User'],
+    resolve:(query)=>
+      prisma.user.findMany({...query})
+    
+  })
+)

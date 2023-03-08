@@ -11,8 +11,17 @@ builder.prismaObject('Offer', {
       contact: t.exposeStringList('contact'),
       postedById: t.exposeID('postedById'),
     }),
-  });
+  }
+);
 
-  const Mode = builder.enumType('Mode', {
-    values: ['ONLINE', 'IN_PERSON','BOTH'] as const,
+const Mode = builder.enumType('Mode', {
+  values: ['ONLINE', 'IN_PERSON','BOTH'] as const,
+})
+
+builder.queryField('offers', (t)=>
+  t.prismaField({
+    type: ['Offer'],
+    resolve:(query)=>prisma.offer.findMany({...query})
   })
+)
+
