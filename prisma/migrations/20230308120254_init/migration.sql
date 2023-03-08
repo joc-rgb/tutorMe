@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Mode" AS ENUM ('ONLINE', 'IN_PERSON');
+CREATE TYPE "Mode" AS ENUM ('ONLINE', 'IN_PERSON', 'BOTH');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -25,7 +25,7 @@ CREATE TABLE "Offer" (
     "description" TEXT NOT NULL,
     "tag" TEXT[],
     "pricePerSession" DOUBLE PRECISION[],
-    "tutorMode" "Mode"[],
+    "tutorMode" "Mode" NOT NULL DEFAULT 'BOTH',
     "contact" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
