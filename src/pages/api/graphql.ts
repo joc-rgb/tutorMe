@@ -1,9 +1,8 @@
-import { createYoga, createSchema } from "graphql-yoga";
-import { resolvers } from "../../graphql/resolvers";
-import { typeDefs } from "../../graphql/schema";
+import { createYoga} from "graphql-yoga";
+import { schema } from "../../graphql/schema";
 
 export default createYoga<{req:Request, res:Response}>({
-    schema:createSchema({typeDefs, resolvers}),
+    schema,
     graphqlEndpoint: '/api/graphql'
 })
 
