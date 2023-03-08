@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pothos/core": "^3.27.1",
+    "@pothos/plugin-prisma": "^3.41.3",
     "@prisma/client": "^4.11.0",
     "framer-motion": "^10.0.2",
     "graphql": "^16.6.0",
