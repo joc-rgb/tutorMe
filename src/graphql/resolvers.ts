@@ -1,4 +1,4 @@
-import { users } from "../src/constant"
+import { users } from "../constant"
 
 export const resolvers = {
     Query:{
