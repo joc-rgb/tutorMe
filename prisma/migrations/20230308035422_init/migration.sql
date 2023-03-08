@@ -5,11 +5,13 @@ CREATE TYPE "Mode" AS ENUM ('ONLINE', 'IN_PERSON');
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "username" TEXT NOT NULL,
-    "email" TEXT,
+    "email" TEXT NOT NULL,
     "location" TEXT NOT NULL,
     "profileImg" TEXT,
     "phoneNumber" TEXT,
     "about" TEXT,
+    "expertiseIn" TEXT[],
+    "highestEducationLvl" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
