@@ -1,4 +1,4 @@
-export type IUser = ({
+export type IUserInput = ({
         username: string;
         email: string;
         location: string;
@@ -14,7 +14,7 @@ export type IUser = ({
         highestEducationLvl: string;
     })
 
-export const users:IUser[] = [
+export const users:IUserInput[] = [
     {
         username:'mike',
         email: 'mike@mail.com',
