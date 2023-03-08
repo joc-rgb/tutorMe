@@ -35,7 +35,7 @@ model Offer {
   description String
   tag String[] 
   pricePerSession  Float[]
-  tutorMode Mode[]
+  tutorMode Mode  @default(BOTH)
   contact String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -47,4 +47,5 @@ model Offer {
 enum Mode {
   ONLINE
   IN_PERSON
+  BOTH
 }
