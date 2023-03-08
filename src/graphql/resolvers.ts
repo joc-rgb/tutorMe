@@ -1,9 +1,8 @@
-import { users } from "../constant"
-
+import prisma from "../lib/prisma"
 export const resolvers = {
     Query:{
         users:()=>{
-            return users
+            return prisma.user.findMany()
         }
     }
 }
