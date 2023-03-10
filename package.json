@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
+    "@auth0/nextjs-auth0": "^2.2.2",
     "@pothos/core": "^3.27.1",
     "@pothos/plugin-prisma": "^3.41.3",
     "@prisma/client": "^4.11.0",
@@ -19,6 +20,8 @@
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.5",
+    "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0"
   },
   "devDependencies": {

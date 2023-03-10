@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
-
+import { useUser } from '@auth0/nextjs-auth0/client'
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -11,18 +11,18 @@ const links = [
 ];
 
 export default function Header() {
-  const session = false
+  const { user } = useUser()
   const [isMenu, setIsMenu] = useState(false);
   const [isMobileNav, setMobileNav] = useState(false);
 
   return (
-    <header className='sticky top-0 z-50 bg-white shadow-lg'>
+    <header className='sticky top-0 z-50 bg-white shadow-lg px-8'>
       <AnimatePresence>
         <div className='layout flex h-16 items-center justify-between'>
           <div className="p-2 border border-gray-700 rounded md:hidden cursor-pointer" onClick={() => setMobileNav(!isMobileNav)}>
             {isMobileNav?<RxCross2 />:<FaBars  />}
           </div>
-        <Link href='/' className='text-green-600 font-normal text-3xl hover:scale-105 '>
+        <Link href='/' className='text-blue-600 font-semibold text-3xl hover:scale-105 '>
           tutorMe
         </Link>
         
@@ -57,8 +57,8 @@ export default function Header() {
             {isMenu &&
               (<motion.div initial={{ opacity: 0, scale: 0.6, y: 50 }} animate={{ opacity: 1, scale: 1, y:0 }} exit={{ opacity: 0, scale: 0.6, y:0 }} className="absolute w-36 top-11 right-0 bg-white shadow-md text-gray-800 text-xs ">
               <div className="flex flex-col">
-                <p className="p-2">{session ? `Hello, Adam` : 'Please login to continue'}</p>
-                {session ?
+                <p className="p-2">{user ? `Hello, ${user.name}` : 'Please login to continue'}</p>
+                {user ?
                 
                 <p className='p-2 hover:text-orange-500' onClick={(e) => {
                   e.preventDefault()

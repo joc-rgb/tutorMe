@@ -1,8 +1,24 @@
+import { gql } from '@apollo/client'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
 const Home: NextPage = () => {
+
+  const AllOffersQuery = gql`
+  query {
+    offers {
+      id
+      title
+      description
+      pricePerSession
+      tutorMode
+      category
+      postedById
+    }
+  }
+`
+
   return (
     <div>
       <Head>
