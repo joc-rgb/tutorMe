@@ -25,3 +25,31 @@ builder.queryField('offers', (t)=>
   })
 )
 
+builder.mutationField("createOffer",(t)=>
+  t.prismaField({
+    type:'Offer',
+    args:{
+      title: t.arg.string({required:true}),
+      description: t.arg.string({required:true}),
+      tag:t.arg.stringList({required:false}),
+      pricePerSession:t.arg.floatList({required:true}),
+      tutorMode: t.arg({type:Mode,required:true}),
+      contact: t.arg.stringList({required:true}),
+      postedById: t.arg.int({required:true})
+    },
+    resolve: async (query, _parent, args, ctx) => {
+      const { title, description, postedById,pricePerSession,tutorMode,contact } = args
+
+      return prisma.offer.create({
+        ...query,
+        data: {
+          title,
+          description,
+          postedById,
+          pricePerSession,
+          tutorMode,
+          contact
+        }
+      })
+  }})
+)
