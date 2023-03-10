@@ -2,7 +2,7 @@ import { builder } from "./builder";
 
 export const schema = builder.toSchema()
 
-//Pothos generate GraphQL schema for Us!
+
 // export const typeDefs = `
 //     type User {
 //         username: String

@@ -1,8 +1,8 @@
 import prisma from "../lib/prisma"
 export const resolvers = {
     Query:{
-        users:()=>{
-            return prisma.user.findMany()
+        offers:()=>{
+            return prisma.offer.findMany()
         }
     }
 }
