@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import { useUser } from '@auth0/nextjs-auth0/client'
+import Button, { Variant } from "../Button";
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -22,7 +23,7 @@ export default function Header() {
           <div className="p-2 border border-gray-700 rounded md:hidden cursor-pointer" onClick={() => setMobileNav(!isMobileNav)}>
             {isMobileNav?<RxCross2 />:<FaBars  />}
           </div>
-        <Link href='/' className='text-blue-600 font-semibold text-3xl hover:scale-105 '>
+        <Link href='/' className='text-blue-600 font-semibold text-3xl hover:scale-105 cursor-pointer '>
           tutorMe
         </Link>
         
@@ -52,23 +53,21 @@ export default function Header() {
           <div className="cursor-pointer relative" onClick={() => {
                   setIsMenu(!isMenu)
                 }}>
+                  <div className="flex gap-4 items-center justify-center">
             <FaUser className='text-2xl'/>
-            
+            <Link href={'/post'} ><Button variants={Variant.primary} >Post Offer</Button></Link></div>
             {isMenu &&
               (<motion.div initial={{ opacity: 0, scale: 0.6, y: 50 }} animate={{ opacity: 1, scale: 1, y:0 }} exit={{ opacity: 0, scale: 0.6, y:0 }} className="absolute w-36 top-11 right-0 bg-white shadow-md text-gray-800 text-xs ">
               <div className="flex flex-col">
                 <p className="p-2">{user ? `Hello, ${user.name}` : 'Please login to continue'}</p>
                 {user ?
                 
-                <p className='p-2 hover:text-orange-500' onClick={(e) => {
+                <Link href="/api/auth/logout" className='p-2 hover:text-orange-500' onClick={(e) => {
                   e.preventDefault()
 
-                  }}>Sign Out</p>
+                  }}>Sign Out</Link>
                    
-           :<p className='p-2 hover:text-orange-500' onClick={(e) => {
-                  e.preventDefault()
-        
-                }}>Login</p>}
+           :<Link href="/api/auth/login" className='p-2 hover:text-orange-500' >Login</Link>}
                 
               </div>
               </motion.div>)
