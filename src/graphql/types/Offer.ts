@@ -38,6 +38,10 @@ builder.mutationField("createOffer",(t)=>
       postedById: t.arg.int({required:true})
     },
     resolve: async (query, _parent, args, ctx) => {
+      if(!(await ctx).user){
+throw new Error("Please login in to perform this action!")
+      }
+      
       const { title, description, postedById,pricePerSession,tutorMode,contact } = args
 
       return prisma.offer.create({
