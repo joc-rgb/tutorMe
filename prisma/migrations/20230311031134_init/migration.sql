@@ -4,9 +4,9 @@ CREATE TYPE "Mode" AS ENUM ('ONLINE', 'IN_PERSON', 'BOTH');
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "username" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "location" TEXT NOT NULL,
+    "location" TEXT,
     "profileImg" TEXT,
     "phoneNumber" TEXT,
     "about" TEXT,
@@ -33,9 +33,6 @@ CREATE TABLE "Offer" (
 
     CONSTRAINT "Offer_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");

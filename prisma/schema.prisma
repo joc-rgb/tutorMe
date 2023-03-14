@@ -16,9 +16,9 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  username  String  @unique
+  name  String  
   email     String  @unique
-  location String
+  location String?
   profileImg     String?
   phoneNumber String? 
   about String?
