@@ -1,12 +1,12 @@
 export type IUserInput = ({
-        username: string;
+        name: string;
         email: string;
         location: string;
         about: string;
         expertiseIn: string[];
         highestEducationLvl?: undefined;
     } | {
-        username: string;
+        name: string;
         email: string;
         location: string;
         about: string;
@@ -16,14 +16,14 @@ export type IUserInput = ({
 
 export const users:IUserInput[] = [
     {
-        username:'mike',
+        name:'mike',
         email: 'mike@mail.com',
         location:'Sarawak, Malaysia',
         about:'I am a native English speaker with 10 years of English tutoring experience.',
         expertiseIn:['english'],
     },
     {
-        username:'jennislee',
+        name:'jennislee',
         email: 'lee@mail.com',
         location:'Singapore',
         about:'I am a senior actress with more than 20 years experience.',
@@ -31,11 +31,27 @@ export const users:IUserInput[] = [
         
     },
     {
-        username:'jess',
+        name:'jess',
         email: 'jess@mail.com',
         location:'United Kingdom',
         about:'A senior backend developer with 10+ years of industry experience',
         expertiseIn:['coding'],
         highestEducationLvl:'NUS Singapore'
     },
+]
+
+
+export const TAGS=[
+    'math',
+    'english', 
+    'history',
+    'geography',
+    'biology',
+    'coding', 
+    'physics',
+    'chemistry',
+    'calculus',
+    'language',
+    'art',
+    'other',
 ]
