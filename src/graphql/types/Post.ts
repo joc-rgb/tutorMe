@@ -1,4 +1,5 @@
 import { builder } from "../builder";
+
 builder.prismaObject('Post', {
     fields: (t) => ({
       id: t.exposeID('id'),
@@ -9,8 +10,8 @@ builder.prismaObject('Post', {
       tutorMode: t.expose('tutorMode', { type: Mode }),
       contact: t.exposeStringList('contact'),
       postedById: t.exposeInt('postedById'),
-      postedBy: t.relation('postedBy')
-
+      postedBy: t.relation('postedBy'),
+      createdAt: t.expose('createdAt', {type: Date})
   })
 });
 
