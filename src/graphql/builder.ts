@@ -4,11 +4,13 @@ import type PrismaTypes from '@pothos/plugin-prisma/generated';
 import prisma from "../lib/prisma";
 import { createContext } from "./context"; 
 import { DateResolver } from "graphql-scalars";
+import RelayPlugin from '@pothos/plugin-relay';
 
 export const builder = new SchemaBuilder<{ PrismaTypes: PrismaTypes,Context: ReturnType<typeof createContext>, Scalars: {
   Date: { Input: Date; Output: Date };
 }; }>({
-    plugins: [PrismaPlugin],
+  plugins: [PrismaPlugin, RelayPlugin],
+  relayOptions: {},
     prisma: {
         client: prisma,
     },
