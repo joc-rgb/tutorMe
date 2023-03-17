@@ -11,7 +11,7 @@ builder.prismaObject('Post', {
       contact: t.exposeStringList('contact'),
       postedById: t.exposeInt('postedById'),
       postedBy: t.relation('postedBy'),
-      createdAt: t.expose('createdAt', {type: Date})
+      createdAt: t.expose('createdAt', {type: "Date"})
   })
 });
 
@@ -21,8 +21,9 @@ const Mode = builder.enumType('Mode', {
 
 
 builder.queryField('posts', (t)=>
-  t.prismaField({
-    type: ['Post'],
+  t.prismaConnection({
+    type: 'Post',
+    cursor:'id',
     resolve:(query)=>prisma.post.findMany({...query})
   })
 )
