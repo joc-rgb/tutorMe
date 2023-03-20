@@ -5,13 +5,14 @@ builder.prismaObject('Post', {
       id: t.exposeID('id'),
       title: t.exposeString('title'),
       description: t.exposeString('description'),
+      img:t.exposeString('img',{nullable: true }),
       tag: t.exposeStringList('tag'),
       pricePerSession: t.exposeFloatList('pricePerSession'),
       tutorMode: t.expose('tutorMode', { type: Mode }),
       contact: t.exposeStringList('contact'),
       postedById: t.exposeInt('postedById'),
+      createdAt: t.expose('createdAt', {type: "Date"}),
       postedBy: t.relation('postedBy'),
-      createdAt: t.expose('createdAt', {type: "Date"})
   })
 });
 
@@ -38,7 +39,8 @@ builder.mutationField("createPost",(t)=>
       pricePerSession:t.arg.floatList({required:true}),
       tutorMode: t.arg({type:Mode,required:true}),
       contact: t.arg.stringList({required:true}),
-      postedById: t.arg.int({ required: true })
+      postedById: t.arg.int({ required: true }),
+      img:t.arg.string()
     },
     resolve: async (query, _parent, args, ctx) => {
       const userInfo = (await ctx).user
@@ -46,7 +48,7 @@ builder.mutationField("createPost",(t)=>
         throw new Error("Please login in to perform this action!")
       }
       
-      const { title, description, pricePerSession,tutorMode,contact,postedById, tag} = args
+      const { title, description, pricePerSession,tutorMode,contact,postedById, tag,img} = args
       return prisma.post.create({
         ...query,
         data: {
@@ -57,7 +59,7 @@ builder.mutationField("createPost",(t)=>
           contact,
           postedBy: { connect: { id: postedById } },
           tag,
-          
+          img
         }
       })
   }})

@@ -33,6 +33,7 @@ model Post {
   id          Int      @id @default(autoincrement())
   title       String
   description String
+  img String?
   tag String[] 
   pricePerSession  Float[]
   tutorMode Mode  @default(BOTH)

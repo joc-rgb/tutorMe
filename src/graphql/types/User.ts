@@ -11,7 +11,7 @@ builder.prismaObject('User', {
       about: t.expose('about', { type: 'String', nullable: true }),
       expertiseIn: t.exposeStringList('expertiseIn'),
       highestEducationLvl: t.expose('highestEducationLvl', { type: 'String', nullable: true }),
-      offers: t.relation('offers')
+      posts: t.relation('posts')
     }),
   });
 
@@ -24,7 +24,21 @@ builder.queryField('users', (t)=>
   })
 
 )
-
+builder.queryField('getUserByEmail',(t)=>
+  t.prismaField({
+    type:'User',
+    args:{
+      email: t.arg.string({required:true})
+    },
+    resolve:async (query, root, args, ctx, info) =>
+    prisma.user.findUniqueOrThrow({
+      // the `query` argument will add in `include`s or `select`s to
+      // resolve as much of the request in a single query as possible
+      ...query,
+      where: { email: args.email },
+    }),
+  })
+)
 builder.mutationField('user',(t)=>
 t.prismaField({
   type:'User',
