@@ -1,29 +1,29 @@
 import {AnimatePresence,motion } from "framer-motion"
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import { useUser } from '@auth0/nextjs-auth0/client'
-import Button, { Variant } from "../Button";
+import Button, { Variant } from "../global/Button";
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact Us' },
 ];
 
-export default function Header() {
+const Header=()=> {
   const { user } = useUser()
   const [isMenu, setIsMenu] = useState(false);
   const [isMobileNav, setMobileNav] = useState(false);
 
   return (
-    <header className='sticky top-0 z-50 bg-white shadow-lg px-8'>
+    <header className='sticky top-0 z-50 shadow-lg px-8 text-blue-700 bg-white'>
       <AnimatePresence>
         <div className='layout flex h-16 items-center justify-between'>
           <div className="p-2 border border-gray-700 rounded md:hidden cursor-pointer" onClick={() => setMobileNav(!isMobileNav)}>
             {isMobileNav?<RxCross2 />:<FaBars  />}
           </div>
-        <Link href='/' className='text-blue-600 font-semibold text-3xl hover:scale-105 cursor-pointer '>
+        <Link href='/' className='font-semibold text-3xl hover:scale-105 cursor-pointer '>
           tutorMe
         </Link>
         
@@ -55,7 +55,7 @@ export default function Header() {
                 }}>
                   <div className="flex gap-4 items-center justify-center">
             <FaUser className='text-2xl'/>
-            <Link href={'/post'} ><Button variants={Variant.primary} >Post Offer</Button></Link></div>
+            <Link href={'/post'} ><Button variants={Variant.primary} className=" text-blue-600 mx-4 text-sm rounded-2xl" >Post Offer</Button></Link></div>
             {isMenu &&
               (<motion.div initial={{ opacity: 0, scale: 0.6, y: 50 }} animate={{ opacity: 1, scale: 1, y:0 }} exit={{ opacity: 0, scale: 0.6, y:0 }} className="absolute w-36 top-11 right-0 bg-white shadow-md text-gray-800 text-xs ">
               <div className="flex flex-col">
@@ -81,3 +81,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header)
