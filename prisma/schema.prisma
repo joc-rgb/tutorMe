@@ -36,6 +36,7 @@ model Post {
   img String?
   tag String[] 
   pricePerSession  Float[]
+  hourPerSession Float[]
   tutorMode Mode  @default(BOTH)
   contact String[]
   createdAt   DateTime @default(now())
