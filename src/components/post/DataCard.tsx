@@ -11,7 +11,7 @@ const DataCard = (props:IDataCard) => {
   return (
     <Link href={`post/${props.data.id}`} >
     <div className='flex flex-row rounded-lg m-8 text-center shadow-xl mx-16 p-2 bg-blue-50'>
-        <img src='https://www.myprivatetutor.my/userfiles/centers/center1517297641964.png' />
+        <Image alt={props.data.title} src={props.data.img?props.data.img:'https://www.myprivatetutor.my/userfiles/centers/center1517297641964.png'} width={40} height={20} />
         <div className='flex flex-col justify-start text-start px-8'>
             <p className='font-semibold text-xl'>{props.data.title}</p>
             <p className="text-gray-700 text-sm">by <span>{props.data.postedBy.name}</span></p>

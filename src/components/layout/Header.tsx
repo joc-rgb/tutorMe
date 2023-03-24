@@ -55,7 +55,7 @@ const Header=()=> {
                 }}>
                   <div className="flex gap-4 items-center justify-center">
             <FaUser className='text-2xl'/>
-            <Link href={'/post'} ><Button variants={Variant.primary} className=" text-blue-600 mx-4 text-sm rounded-2xl" >Post Offer</Button></Link></div>
+            <Link href={'/create-post'} ><Button variants={Variant.primary} className=" text-blue-600 mx-4 text-sm rounded-2xl" >Post Offer</Button></Link></div>
             {isMenu &&
               (<motion.div initial={{ opacity: 0, scale: 0.6, y: 50 }} animate={{ opacity: 1, scale: 1, y:0 }} exit={{ opacity: 0, scale: 0.6, y:0 }} className="absolute w-36 top-11 right-0 bg-white shadow-md text-gray-800 text-xs ">
               <div className="flex flex-col">
