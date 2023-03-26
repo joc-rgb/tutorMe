@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 import parse from 'html-react-parser';
-import Button from '../global/Button'
+import Button, { Variant } from '../global/Button'
 import { Post } from '@prisma/client'
 import HighlightCard from './HighlightCard'
+import Link from 'next/link';
 interface IPostDetailProps {
     post: Post;
   }
@@ -12,10 +13,10 @@ const PostDetail = ({post}:IPostDetailProps) => {
     <div className="flex flex-col-reverse md:p-16 p-8 gap-8 md:flex-row ">
         <div className="invisible md:visible flex flex-1 self-start flex-col sticky top-32 rounded-3xl h-fit items-center justify-center md:border border-blue-100 gap-2 p-4 px-8 shadow-lg">
           <div className="relative rounded-full w-16 h-16">
-        <img src='https://placekitten.com/100/100' alt={post.postedBy.name} className='rounded-full' fill  />
+        <img src='https://placekitten.com/100/100' alt={post.postedBy.name} className='rounded-full'  />
        </div>
        <p className='text-sm'>{post.postedBy.name}</p>
-        <Button  >View Profile</Button>
+        <Link href={`/user/${post.postedById}`} ><Button variants={Variant.outline} >View Profile</Button></Link>
       </div>
         <div className="flex flex-col gap-8 md:border border-blue-100 p-4 md:px-8 rounded-3xl md:shadow-lg">
           <div className="flex-col">
