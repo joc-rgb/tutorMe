@@ -1,8 +1,5 @@
 import aws from 'aws-sdk'
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createReadStream } from 'fs';
-import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
   try {
@@ -26,7 +23,6 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     const preSignedUrl = await s3.getSignedUrl("putObject",{
       Bucket: process.env.AWS_S3_BUCKET_NAME,
       Key: req.query.file,
-      ContentType: req.query.fileType,
       Expires: 60, // seconds
       
     })
