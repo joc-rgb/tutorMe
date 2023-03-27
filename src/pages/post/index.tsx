@@ -1,12 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
 import apolloClient from "../../lib/apollo";
 import { allPostsQuery } from "../../graphql/operations/post";
-import { Post } from "@prisma/client";
 
 import React from 'react'
 import DataCard from "../../components/post/DataCard";
+import { IPost } from "../../constant";
 
-const Posts:NextPage<{posts:Post[]}> = ({posts}) => {
+const Posts:NextPage<{posts:IPost[]}> = ({posts}) => {
   return (
     <div className='w-full min-h-100vh items-center'>
         <p className='font-semibold'>Latest Postings</p>
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      initialPosts: data.posts.edges.map(({ node }: { node: Post }) => node),
+      initialPosts: data.posts.edges.map(({ node }: { node: IPost }) => node),
       hasNextPage: data.posts.pageInfo.hasNextPage,
       endCursor: data.posts.pageInfo.endCursor,
     },

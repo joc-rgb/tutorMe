@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import { postQuery } from '../../../graphql/operations/post'
 import { GetServerSideProps } from 'next'
 import { getSession } from '@auth0/nextjs-auth0'
-import { Mode, Post } from '@prisma/client'
+import { Mode} from '@prisma/client'
 import Loader from '../../../components/global/Loader'
 import Button from '../../../components/global/Button'
 

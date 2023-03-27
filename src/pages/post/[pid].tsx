@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { postQuery, similarPostQuery } from '../../graphql/operations/post';
 import { useQuery } from '@apollo/client';
 import Loader from '../../components/global/Loader';
-import { Post } from '@prisma/client';
 import PostDetail from '../../components/post/PostDetail';
 import SuggestedPosts from '../../components/post/SuggestedPosts';
+import { IPost } from '../../constant';
 
 const PostPage = () => {
     const postId = useRouter().query.pid
@@ -24,7 +24,7 @@ const PostPage = () => {
       if (!loading&&!data) {
         return <p>Error 404</p>;
       }
-      const post:Post = data.post
+      const post:IPost = data.post
     return (
       <div className="flex flex-col gap-10">
       <PostDetail post={post} />
