@@ -39,6 +39,7 @@ builder.queryField('getUserByEmail',(t)=>
     }),
   })
 )
+
 builder.mutationField('user',(t)=>
 t.prismaField({
   type:'User',
@@ -56,6 +57,36 @@ t.prismaField({
         email,
         expertiseIn:[]
       }
+    })
+  }
+})
+)
+
+builder.mutationField('updateUser',(t)=>
+t.prismaField({
+  type:'User',
+  args:{
+    id: t.arg.int({required:true}),
+    phoneNumber: t.arg.string({required:true}),
+    location:t.arg.string({required:true}),
+    expertiseIn:t.arg.stringList({required:true}),
+    about:t.arg.string({required:true}),
+    highestEducationLvl:t.arg.string({required:true}),
+  },
+  resolve:async (query,_parent,args,ctx)=>{
+    const { phoneNumber, location, expertiseIn, about, highestEducationLvl } = args
+    return prisma.user.update({
+      ...query,
+      where:{
+        id:args.id
+      },
+      data:{
+        phoneNumber,
+        location,
+        highestEducationLvl,
+        about,
+        expertiseIn
+      },
     })
   }
 })

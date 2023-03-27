@@ -152,3 +152,15 @@ mutation updatePost(
   }
 }
 `;
+
+export const deletePostMutation = gql`
+  mutation deletePost(
+    $id: ID!
+  ){
+    deletePost(
+      id:$id
+    ){
+      id
+      }
+  }
+`

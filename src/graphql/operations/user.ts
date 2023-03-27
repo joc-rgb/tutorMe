@@ -41,3 +41,29 @@ export const myPostQuery = gql`
     }
   }
 `
+export const updateUser = gql`
+  mutation updateUser(
+    $id:!ID
+    $expertiseIn:!String[]
+    $about: !String
+    $highestEducationLvl: !String
+    $location: !String
+    $phoneNumber: !String
+  ){
+    updateUser(
+      id:$id
+      expertiseIn: $expertiseIn
+      about: $about
+      highestEducationLvl: $highestEducationLvl
+      location: $location
+      phoneNumber: $phoneNumber
+    ){
+      id
+      expertiseIn
+      about
+      phoneNumber
+      location
+      highestEducationLvl
+    }
+  }
+`

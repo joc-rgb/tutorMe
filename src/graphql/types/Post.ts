@@ -26,7 +26,11 @@ builder.queryField('posts', (t)=>
   t.prismaConnection({
     type: 'Post',
     cursor:'id',
-    resolve:(query)=>prisma.post.findMany({...query})
+    resolve:(query)=>prisma.post.findMany({...query,
+    include: {
+      postedBy: true
+    }
+    })
   })
 )
 
@@ -39,6 +43,9 @@ builder.queryField('post', (t)=>
     resolve:async (query, root, args, ctx, info) =>
       prisma.post.findUniqueOrThrow({
         ...query,
+        include: {
+          postedBy: true
+        },
         where: { id: args.id },
       })
   }),
@@ -132,6 +139,8 @@ builder.mutationField("updatePost", (t)=>
           } 
       }
       })
+
+      if(!postOwner) throw new Error("Unauthorized Access")
       const { title, description, pricePerSession,tutorMode,contact, tag,img,hourPerSession} = args
       return prisma.post.update({
         where: {id: Number(args.id) },
@@ -145,6 +154,37 @@ builder.mutationField("updatePost", (t)=>
           tag,
           img
         }
+      })
+    }
+  })
+)
+
+builder.mutationField("deletePost", t=>
+  t.prismaField({
+    type:'Post',
+    args:{
+      id: t.arg.id({required:true}),
+    },
+    resolve:async (query, _parent, args, ctx) =>{
+      const userInfo = (await ctx).user
+      if(!userInfo){
+        throw new Error("Please login in to perform this action!")
+      }
+
+      const postOwner = await prisma.post.findFirstOrThrow({
+        where: {
+          id:Number(args.id),
+          postedBy: {
+            email: userInfo.email
+          } 
+      }
+      })
+
+      if(!postOwner) throw new Error("Unauthorized Access")
+      
+      return prisma.post.delete({
+        where: {id: Number(args.id) },
+        
       })
     }
   })
