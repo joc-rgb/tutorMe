@@ -10,6 +10,6 @@ export default createYoga<{req:Request, res:Response}>({
 
 export const config = {
     api: {
-      bodyParser: false
+      bodyParser: true
     }
   }
