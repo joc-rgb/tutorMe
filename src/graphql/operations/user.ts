@@ -44,7 +44,7 @@ export const myPostQuery = gql`
 export const updateUser = gql`
   mutation updateUser(
     $id:ID!
-    $expertiseIn:String[]!
+    $expertiseIn:[String!]!
     $about: String!
     $highestEducationLvl: String!
     $location: String!
