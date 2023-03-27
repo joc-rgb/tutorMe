@@ -6,7 +6,11 @@ import { Post } from '@prisma/client'
 import HighlightCard from './HighlightCard'
 import Link from 'next/link';
 interface IPostDetailProps {
-    post: Post;
+    post: {postedBy:{
+      id:string,
+      name:string,
+      email:string
+    }}&Post 
   }
 const PostDetail = ({post}:IPostDetailProps) => {
   return (

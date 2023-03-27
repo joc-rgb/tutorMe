@@ -2,8 +2,8 @@ import React from 'react'
 import { similarPostQuery } from '../../graphql/operations/post'
 import { useQuery } from '@apollo/client'
 import Loader from '../global/Loader'
-import { Post } from '@prisma/client'
 import DataCard from './DataCard'
+import { IPost } from '../../constant'
 
 interface ISuggestedPosts{
     postId: number
@@ -24,7 +24,7 @@ const SuggestedPosts = (props:ISuggestedPosts) => {
       if (!loading&&!data?.post) {
         return <></>;
       }
-      const posts:Post[] = data.posts
+      const posts:IPost[] = data.posts
   return (
     <div className='flex flex-col p-20'>{posts.map((p,i)=><DataCard data={p} key={i}/>)}</div>
   )

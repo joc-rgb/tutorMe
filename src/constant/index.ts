@@ -1,3 +1,5 @@
+import { Post } from "@prisma/client";
+
 export type IUserInput = ({
         name: string;
         email: string;
@@ -55,3 +57,6 @@ export const TAGS=[
     'art',
     'other',
 ]
+
+export type IPost = 
+    { postedBy: { id: string; name: string; email: string; }; } & Post
