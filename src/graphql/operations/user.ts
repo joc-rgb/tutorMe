@@ -21,7 +21,7 @@ export const getUserPostsByEmail = gql`
 `
 
 export const myPostQuery = gql`
-  query post($id: ID){
+  query post($id: ID!){
     post(id: $id){
       id
       title
@@ -43,12 +43,12 @@ export const myPostQuery = gql`
 `
 export const updateUser = gql`
   mutation updateUser(
-    $id:!ID
-    $expertiseIn:!String[]
-    $about: !String
-    $highestEducationLvl: !String
-    $location: !String
-    $phoneNumber: !String
+    $id:ID!
+    $expertiseIn:String[]!
+    $about: String!
+    $highestEducationLvl: String!
+    $location: String!
+    $phoneNumber: String!
   ){
     updateUser(
       id:$id
