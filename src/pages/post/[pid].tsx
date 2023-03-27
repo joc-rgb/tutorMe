@@ -9,9 +9,9 @@ import { IPost } from '../../constant';
 
 const PostPage = () => {
     const postId = useRouter().query.pid
-    console.log(postId)
+    
     const { loading, error, data} = useQuery(postQuery, {
-        variables: { id: parseInt(postId as string) as number}
+        variables: { id: postId?parseInt(postId as string) as number:13}
       });
 
       if (loading) {
