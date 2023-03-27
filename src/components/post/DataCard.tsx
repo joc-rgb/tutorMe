@@ -1,11 +1,15 @@
-import { Post } from '@prisma/client'
+import { Post, User } from '@prisma/client'
 import Image from 'next/image'
 import React from 'react'
 import parse from 'html-react-parser';
 import TagItem from './TagItem';
 import Link from 'next/link';
 interface IDataCard{
-  data:Post
+  data:{postedBy:{
+    id:string,
+    name:string,
+    email:string
+  }}&Post 
 }
 const DataCard = (props:IDataCard) => {
   return (
