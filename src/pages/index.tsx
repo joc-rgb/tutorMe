@@ -14,8 +14,11 @@ const Home: NextPage = () => {
     variables: { first: 2 },
   })
   console.log(data)
- 
-  if(error) console.log(error)
+ if(error) {
+    console.log(error)
+    return <div>Something&apos;s wrong</div>
+  }
+  
   return (
     <div className='w-full min-h-100vh items-center' >
       <Head>
