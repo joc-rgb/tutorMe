@@ -58,5 +58,15 @@ export const TAGS=[
     'other',
 ]
 
+export const educationLvl = [
+    'Elementary school',
+    'High School',
+    'Diploma',
+    'Bachelor Degree',
+    'Master Degree',
+    'Professional or Doctorate'
+]
+
 export type IPost = 
     { postedBy: { id: string; name: string; email: string; }; } & Post
+
