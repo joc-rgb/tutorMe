@@ -61,12 +61,17 @@ const Header=()=> {
               <div className="flex flex-col">
                 <p className="p-2">{user ? `Hello, ${user.name}` : 'Please login to continue'}</p>
                 {user ?
-                
-                <Link href="/api/auth/logout" className='p-2 hover:text-orange-500' onClick={(e) => {
+                <>
+                  <Link href="/dashboard" className='p-2 hover:text-orange-500' onClick={(e) => {
                   e.preventDefault()
 
-                  }}>Sign Out</Link>
-                   
+                  }}>Dashboard</Link>
+                  <Link href="/api/auth/logout" className='p-2 hover:text-orange-500' onClick={(e) => {
+                    e.preventDefault()
+
+                    }}>Sign Out</Link>
+
+                </>   
            :<Link href="/api/auth/login" className='p-2 hover:text-orange-500' >Login</Link>}
                 
               </div>
