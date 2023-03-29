@@ -1,10 +1,8 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import { allPostsQuery } from '../graphql/operations/post'
 import DataCard from '../components/post/DataCard'
-import { Post } from '@prisma/client'
 import Button, { Variant } from '../components/global/Button'
 import Hero from '../components/layout/Hero'
 import { IPost } from '../constant'
@@ -36,7 +34,7 @@ const Home: NextPage = () => {
         </svg>
         }
         {!loading&&data.posts.edges.map(({node}: { node: IPost })=><DataCard key={node.id} data={node}/>)}
-        {!loading&&data.posts.pageInfo.hasNextPage?
+        {!loading&&data.posts.pageInfo.hasNextPage&&
         (<Button variants={Variant.primary} onClick={()=>{
           console.log("fetch");
           
@@ -51,7 +49,7 @@ const Home: NextPage = () => {
             ];
             return fetchMoreResult;
           },
-        })}} >I want more!</Button>):<p>You&apos; ve reached the end!{" "}</p>}
+        })}} >I want more!</Button>)}
     </div>
   )
 }

@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import FormInput, { Operation } from '../../../components/post/FormInput'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import { postQuery } from '../../../graphql/operations/post'
 import { GetServerSideProps } from 'next'
 import { getSession } from '@auth0/nextjs-auth0'
 import { Mode} from '@prisma/client'
 import Loader from '../../../components/global/Loader'
-import Button from '../../../components/global/Button'
 
 interface IEditPost{
   img: string | null;
