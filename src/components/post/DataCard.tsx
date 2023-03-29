@@ -4,7 +4,12 @@ import React from 'react'
 import parse from 'html-react-parser';
 import TagItem from './TagItem';
 import Link from 'next/link';
+import Button, { Variant } from '../global/Button';
+import {BsPencilSquare} from "react-icons/bs"
+
 interface IDataCard{
+  owner?:boolean,
+  handleDelete?:()=>void,
   data:{postedBy:{
     id:string,
     name:string,
@@ -14,7 +19,7 @@ interface IDataCard{
 const DataCard = (props:IDataCard) => {
   return (
     <Link href={`post/${props.data.id}`} >
-    <div className='flex flex-row rounded-lg m-8 text-center shadow-xl mx-16 p-2 bg-blue-50'>
+    <div className='flex flex-row rounded-lg m-8 text-center shadow-xl mx-16 p-4 bg-blue-50'>
         <Image alt={props.data.title} src={props.data.img?props.data.img:'https://tutorme.s3.ap-southeast-1.amazonaws.com/no-image.png'} width={350} height={20} />
         <div className='flex flex-col justify-start text-start px-8'>
             <p className='font-semibold text-xl'>{props.data.title}</p>
@@ -24,6 +29,7 @@ const DataCard = (props:IDataCard) => {
             <TagItem text={props.data.tag[0]} inputType={false} />
             <TagItem inputType={false} text={props.data.tutorMode}/>
             </div>
+            
         </div>
         <p className='text-blue-500 font-semibold '>${props.data.pricePerSession}/hour</p>
     </div>

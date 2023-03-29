@@ -116,7 +116,7 @@ const FormInput = (props:IFormInput) => {
         console.error(error);
       }}
     
-    const handleSubmitCreatePost = async (fileImg:File|undefined)=>{
+    const handleSubmitCreatePost = async (fileImg:File|undefined) => {
       
       const imgUrl = fileImg?`https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${encodeURIComponent(fileImg.name)}`:null
       console.log("ImgURL: ", imgUrl)
@@ -260,6 +260,7 @@ const FormInput = (props:IFormInput) => {
          
         placeholder="math"
         onChange={e=>handleTagInputChange(e)}
+        onKeyDown={e=>handleKeyDown(e)}
         value={tagInput}
         name="tag"
         type="text"
@@ -269,23 +270,7 @@ const FormInput = (props:IFormInput) => {
        {tagInput&&suggestions.map((tag,i)=><SuggestionTag key={i} text={tag} handleClick={handleSuggestionClick} />)}
       
     </label>
-    <label className="block"> 
-
-    {/* Check the class mode and display suitable price Input */ }
-      
-        <span className="text-gray-700">Price Per Session($)</span>
-        <Input
-           value={price}
-          name="price"
-          type="number" 
-          required
-          min="0.01"
-          step="0.01"
-          defaultValue={0.01}
-          onChange={e=>setPrice([e.target.value.toString()])}
-        />
-      
-    </label>
+    
     <label className="block">
       <span className="text-gray-700">Mode</span>
       <select
