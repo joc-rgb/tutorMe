@@ -10,14 +10,38 @@ export const getUserByEmailQuery = gql`
     }
 `
 
-export const getUserPostsByEmail = gql`
-    query getUserPostsByEmail(
-        $email:String!
-    ){
-        getUserPostsByEmail(email:$email){
-            posts
+export const getUserInfoByEmail = gql`
+query getUserByEmail(
+  $email: String!
+){
+    getUserByEmail(email: $email){
+        id
+        name
+        expertiseIn
+        about
+        phoneNumber
+        location
+        highestEducationLvl
+        posts{
+          id
+          title
+          description
+          pricePerSession
+          tag
+          img
+          tutorMode
+          contact
+          postedById
+          postedBy{
+            id
+            email
+            name
+          }
+          createdAt
         }
-    }
+      }
+    
+}
 `
 
 export const myPostQuery = gql`
@@ -41,29 +65,28 @@ export const myPostQuery = gql`
     }
   }
 `
-export const updateUser = gql`
+
+export const updateUserMutation = gql`
   mutation updateUser(
-    $id:ID!
+    $email:String!
     $expertiseIn:[String!]!
     $about: String!
     $highestEducationLvl: String!
     $location: String!
-    $phoneNumber: String!
   ){
     updateUser(
-      id:$id
+      email:$email
       expertiseIn: $expertiseIn
       about: $about
       highestEducationLvl: $highestEducationLvl
       location: $location
-      phoneNumber: $phoneNumber
     ){
-      id
+      email
       expertiseIn
       about
-      phoneNumber
       location
       highestEducationLvl
     }
   }
 `
+

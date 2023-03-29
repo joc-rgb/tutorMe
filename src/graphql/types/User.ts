@@ -25,21 +25,6 @@ builder.queryField('users', (t)=>
   })
 
 )
-builder.queryField('getUserByEmail',(t)=>
-  t.prismaField({
-    type:'User',
-    args:{
-      email: t.arg.string({required:true})
-    },
-    resolve:async (query, root, args, ctx, info) =>
-    prisma.user.findUniqueOrThrow({
-      // the `query` argument will add in `include`s or `select`s to
-      // resolve as much of the request in a single query as possible
-      ...query,
-      where: { email: args.email },
-    }),
-  })
-)
 
 builder.mutationField('user',(t)=>
 t.prismaField({
@@ -49,7 +34,7 @@ t.prismaField({
     name:t.arg.string({required:true}),
     expertiseIn:t.arg.stringList()
   },
-  resolve:async (query,_parent,args,ctx)=>{
+  resolve: async (query,_parent,args,ctx)=>{
     const { email,expertiseIn,name } = args
     return prisma.user.create({
       ...query,
@@ -63,26 +48,58 @@ t.prismaField({
 })
 )
 
+builder.queryField('getUserPost',(t)=>
+  t.prismaField({
+    type:'User',
+    args:{
+      email: t.arg.string({required:true})
+    },
+    resolve:async (query, root, args, ctx, info) =>
+    prisma.user.findUniqueOrThrow({
+      // the `query` argument will add in `include`s or `select`s to
+      // resolve as much of the request in a single query as possible
+      ...query,
+      where: { email: args.email },
+      include: {posts:true}
+    }),
+  })
+)
+
+
+builder.queryField('getUserByEmail',(t)=>
+  t.prismaField({
+    type:'User',
+    args:{
+      email: t.arg.string({required:true})
+    },
+    resolve:async (query, root, args, ctx, info) =>
+    prisma.user.findUniqueOrThrow({
+      
+      ...query,
+      where: { email: args.email }
+    }),
+  })
+)
+
 builder.mutationField('updateUser',(t)=>
 t.prismaField({
   type:'User',
   args:{
-    id: t.arg.int({required:true}),
-    phoneNumber: t.arg.string({required:true}),
+    email: t.arg.string({required:true}),
+  
     location:t.arg.string({required:true}),
     expertiseIn:t.arg.stringList({required:true}),
     about:t.arg.string({required:true}),
     highestEducationLvl:t.arg.string({required:true}),
   },
   resolve:async (query,_parent,args,ctx)=>{
-    const { phoneNumber, location, expertiseIn, about, highestEducationLvl } = args
+    const { location, expertiseIn, about, highestEducationLvl } = args
     return prisma.user.update({
       ...query,
       where:{
-        id:args.id
+        email:args.email
       },
       data:{
-        phoneNumber,
         location,
         highestEducationLvl,
         about,
