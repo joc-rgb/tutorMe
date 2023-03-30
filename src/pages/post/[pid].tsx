@@ -11,7 +11,7 @@ const PostPage = () => {
     const postId = useRouter().query.pid
     
     const { loading, error, data} = useQuery(postQuery, {
-        variables: { id: postId?parseInt(postId as string) as number:13}
+        variables: { id: parseInt(postId as string) as number}
       });
 
       if (loading) {
@@ -22,7 +22,13 @@ const PostPage = () => {
         );
       }
       if (!loading&&!data) {
-        return <p>Error 404</p>;
+        return {
+          redirect: {
+            permanent: false,
+            destination: '/404',
+          },
+          props: {},
+        };
       }
       const post:IPost = data.post
     return (
