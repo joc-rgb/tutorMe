@@ -6,8 +6,8 @@ import FormInput, { Operation } from "../components/post/FormInput";
 const CreatePost = () => {
 
   return (
-    <div className="w-full h-full">
-      <p className="self-center text-xl">Create a New Post</p>
+    <div className="w-full h-full" >
+      <p className="self-center text-xl p-5 text-center">Create a New Post</p>
       <FormInput operationType={Operation.CREATE} />
       </div>
   )

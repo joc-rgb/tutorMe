@@ -10,7 +10,6 @@ import { TAGS } from '../../constant'
 import { toast } from 'react-hot-toast'
 import { useMutation } from '@apollo/client'
 import { createPostMutation, updatePostMutation } from '../../graphql/operations/post'
-import { JSONObject } from 'graphql-scalars/typings/mocks'
 
 export enum Operation{
   CREATE,
@@ -273,16 +272,19 @@ const FormInput = (props:IFormInput) => {
     
     <label className="block">
       <span className="text-gray-700">Mode</span>
+      <div>
       <select
         placeholder="Class Mode"
         name="mode"
         required
         value={mode}
+        onChange={e=>setMode(e.target.value as Mode)}
       >
-        <option onClick={e=>setMode(Mode.ONLINE)} >ONLINE</option>
-        <option onClick={e=>setMode(Mode.IN_PERSON)} >IN-PERSON</option>
-        <option onClick={e=>setMode(Mode.BOTH)} >BOTH</option>
+        <option value={Mode.ONLINE}>ONLINE</option>
+        <option value={Mode.IN_PERSON} >IN-PERSON</option>
+        <option value={Mode.BOTH} >BOTH</option>
       </select>
+      </div>
     </label>
     
     <label className="block"> 
