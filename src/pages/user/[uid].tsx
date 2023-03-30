@@ -46,6 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, query }
     select: {
       id:true,
       email:true,
+      name:true,
       phoneNumber:true,
       about:true,
       expertiseIn:true,
