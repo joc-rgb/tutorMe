@@ -62,10 +62,7 @@ const Header=()=> {
                 <p className="p-2">{user ? `Hello, ${user.name}` : 'Please login to continue'}</p>
                 {user ?
                 <>
-                  <Link href="/dashboard" className='p-2 hover:text-orange-500' onClick={(e) => {
-                  e.preventDefault()
-
-                  }}>Dashboard</Link>
+                  <Link href="/dashboard" className='p-2 hover:text-orange-500' >Dashboard</Link>
                   <Link href="/api/auth/logout" className='p-2 hover:text-orange-500' onClick={(e) => {
                     e.preventDefault()
 
