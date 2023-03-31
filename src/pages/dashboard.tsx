@@ -13,12 +13,13 @@ import { User } from '@prisma/client'
 import Modal from '../components/global/Modal';
 import { deletePostMutation } from '../graphql/operations/post';
 import UserDetails from '../components/post/UserDetails';
+import { useRouter } from 'next/router';
 
 const Dashboard = () => {
   const [modal, setModal] = useState(false)
   const [selectedPostId, setSelectedPostId] = useState<number>(0)
   const {user} = useUser()
-  
+  const router = useRouter()
   const {data,loading,error} = useQuery(getUserInfoByEmail,{
     variables:{email: user?.email as string}
   })
@@ -44,6 +45,8 @@ const Dashboard = () => {
         error: `Something went wrong 😥 Please try again. ${error}`,
       }
     )
+
+    router.push('/dashboard')
     } catch (error) {
         console.error(error);
       }

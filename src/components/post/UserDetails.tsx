@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import TagItem from './TagItem';
 import DataCard from './DataCard';
 import Link from 'next/link';
-import { BsPencilSquare } from 'react-icons/bs';
+import { BsPencilSquare, BsTrash2Fill } from 'react-icons/bs';
 import { IPost } from '../../constant';
 import { MdLocationPin } from 'react-icons/md';
 
@@ -56,14 +56,14 @@ const UserDetails = (props:IUserDetails) => {
       <div className='p-8 m-4 border-y border-slate-300'>
       <p className="font-semibold text-2xl">Published Posts</p>
       {props.posts.map(post => 
-      <div key={post.id} className='flex'> 
+      <div key={post.id} className='flex flex-col'> 
         <DataCard data={post} owner={props.owner} />
           {props.owner&&
           <><Link href={`/edit/${post.id}`}>
-            <Button variants={Variant.outline}>Edit <BsPencilSquare />
+            <Button variants={Variant.outline}><BsPencilSquare />
             </Button>
           </Link>
-          <Button onClick={()=>props.handleDeleteClick?.(post.id)} variants={Variant.outline}>Delete </Button>
+          <Button onClick={()=>props.handleDeleteClick?.(post.id)} variants={Variant.outline}><BsTrash2Fill /></Button>
         </>}
       </div>
       )}
