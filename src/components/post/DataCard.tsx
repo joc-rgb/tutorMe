@@ -19,7 +19,7 @@ interface IDataCard{
 const DataCard = (props:IDataCard) => {
   return (
     <Link href={`post/${props.data.id}`} >
-    <div className='flex flex-row rounded-lg m-8 text-center shadow-xl mx-16 p-4 bg-blue-50'>
+    <div className='flex md:flex-row flex-col rounded-lg m-8 text-center shadow-xl mx-16 p-4 bg-blue-50'>
         <Image alt={props.data.title} src={props.data.img?props.data.img:'https://tutorme.s3.ap-southeast-1.amazonaws.com/no-image.png'} width={350} height={20} />
         <div className='flex flex-col justify-start text-start px-8'>
             <p className='font-semibold text-xl'>{props.data.title}</p>
