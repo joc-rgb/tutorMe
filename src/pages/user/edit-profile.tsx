@@ -5,7 +5,7 @@ import Input from '../../components/global/Input';
 import { toast } from 'react-hot-toast';
 import { useMutation } from '@apollo/client';
 import { updateUserMutation } from '../../graphql/operations/user';
-import { RxCrossCircled } from 'react-icons/rx';
+import prisma from '../../lib/prisma';
 import RichTextEditor from '../../components/post/RichTextEditor';
 import TagItem from '../../components/post/TagItem';
 import { TAGS, educationLvl } from '../../constant';
