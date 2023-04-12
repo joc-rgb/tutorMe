@@ -3,6 +3,7 @@ import UserDetails from '../../components/post/UserDetails'
 import { GetServerSideProps } from 'next'
 import { getSession } from '@auth0/nextjs-auth0'
 import { IPost } from '../../constant'
+import { prisma } from '../../lib/prisma'
 
 interface IUserPage{
   id: number;
