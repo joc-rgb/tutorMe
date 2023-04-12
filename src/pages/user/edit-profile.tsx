@@ -1,6 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0'
 import { GetServerSideProps } from 'next'
-import prisma from '../../lib/prisma';
+import {prisma} from '../../lib/prisma';
 import React, { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import Input from '../../components/global/Input';
 import { toast } from 'react-hot-toast';
